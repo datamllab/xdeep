@@ -36,7 +36,7 @@ class ImageInterpreter(object):
         self.model = model
         self.result = None
 
-    def vallina_backprop(self, model):
+    def vanilla_backprop(self, model):
         return Backprop(model, guided=False)
 
     def guided_backprop(self, model):
@@ -75,7 +75,7 @@ class ImageInterpreter(object):
             image: str or PIL.Image. The input image to ImageInterpreter. User can directly provide the path of input
                                     image, or provide PIL.Image foramt image. For example, image can be './test.jpg' or
                                     Image.open('./test.jpg').convert('RGB').
-            method_name: str. The name of interpreter method. Currently support for 'vallina_backprop', 'guided_backprop',
+            method_name: str. The name of interpreter method. Currently support for 'vanilla_backprop', 'guided_backprop',
                             'smooth_grad', 'smooth_guided_grad', 'integrate_grad', 'integrate_guided_grad', 'gradcam',
                             'gradcampp', 'scorecam'.
             viz: bool. Visualize or not. Defaults to True.
@@ -86,7 +86,7 @@ class ImageInterpreter(object):
             save_path: str. Path to save the saliency map. Default to be None.
         """
 
-        method_switch = {"vallina_backprop": self.vallina_backprop,
+        method_switch = {"vanilla_backprop": self.vanilla_backprop,
                          "guided_backprop": self.guided_backprop,
                          "smooth_grad": self.smooth_grad,
                          "smooth_guided_grad": self.smooth_guided_grad,
