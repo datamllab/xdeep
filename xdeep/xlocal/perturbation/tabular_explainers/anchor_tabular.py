@@ -1,4 +1,5 @@
-import numpy as np
+# The implementation of anchor refers the original authors' codes in GitHub https://github.com/marcotcr/anchor. 
+# The Copyright of algorithm anchor is reserved for (c) 2018, Marco Tulio Correia Ribeiro.import numpy as np
 
 from anchor.anchor_tabular import AnchorTabularExplainer
 
