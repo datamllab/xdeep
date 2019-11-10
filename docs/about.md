@@ -4,14 +4,17 @@ This package is developed by [DATA LAB](http://faculty.cs.tamu.edu/xiahu/) at Te
 
 ## Main Contributors
 
+[**Fan Yang**](./):
+Overall package design.
+
 [**Zijian Zhang**](./):
-Main developer for perturbation-based local explanations.
+Developer for perturbation-based local explanation part.
 
 [**Haofan Wang**](./):
-Main developer for local explanations and global explanations.
+Developer for gradient-based local explanation and global explanation part.
 
-[**Fan Yang**](./):
-Project leader. 
+[**Yuening Li**](./):
+Code review and testing.
 
 [**Xia "Ben" Hu**](./):
-Project leader. 
+Advisor. 
