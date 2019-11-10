@@ -1,3 +1,5 @@
+# The implementation of LIME refers the original authors' codes in GitHub https://github.com/limetext/lime. 
+# The Copyright of algorithm LIME is reserved for (c) 2016, Marco Tulio Correia Ribeiro.
 import matplotlib.pyplot as plt
 
 from lime.lime_text import LimeTextExplainer
