@@ -1,7 +1,7 @@
 # XDeep
-## for interpretable deep learning developers
+## *for interpretable deep learning developers*
 
-XDeep is an open source software library for automated Interpretable Machine Learning. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The ultimate goal of XDeep is to provide easily accessible interpretation tools to people who want to figure out why the model predicts so. XDeep provides a variety of methods to interpret a model locally and globally.
+XDeep is an open source software library for **Interpretable Machine Learning**. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The ultimate goal of XDeep is to provide easily accessible interpretation tools to people who want to figure out why the model predicts so. XDeep provides a variety of methods to interpret a model locally and globally.
 
 
 ## Installation
