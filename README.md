@@ -1,7 +1,7 @@
 # XDeep 
 ## -- *for interpretable deep learning developers*
 
-XDeep is an open source software library for **Interpretable Machine Learning**. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The ultimate goal of XDeep is to provide easily accessible interpretation tools to people who want to figure out why the model predicts so. XDeep provides a variety of methods to interpret a model locally and globally.
+XDeep is an open source Python library for **Interpretable Machine Learning**. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The goal of XDeep is to provide easily accessible interpretation tools for people who want to figure out how deep models work. XDeep provides a variety of methods to interpret a model both locally and globally.
 
 
 ## Installation
@@ -32,7 +32,7 @@ model_explainer = ImageInterpreter(model)
 model_explainer.explain(image, method_name='gradcam', target_layer_name='features_29', viz=True) 
 ```
 
-For detailed tutorial, please check docs directory [here](https://github.com/datamllab/xdeep/tree/master/docs).
+For detailed tutorial, please check the docs directory of this repository [here](https://github.com/datamllab/xdeep/tree/master/docs).
 
 ## Cite this work
 
