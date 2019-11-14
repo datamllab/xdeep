@@ -36,7 +36,7 @@ For detailed tutorial, please check the docs directory of this repository [here]
 
 ## Sample Results
 
-<img src="https://github.com/datamllab/xdeep/blob/master/result_img/ensemble_fig.png" width="50%" height="45%">
+<img src="https://github.com/datamllab/xdeep/blob/master/result_img/ensemble_fig.png" width="100%" height="100%">
 
 ## Cite this work
 
