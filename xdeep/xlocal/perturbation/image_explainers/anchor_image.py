@@ -1,12 +1,11 @@
-# The implementation of anchor refers the original authors' codes in GitHub https://github.com/marcotcr/anchor. 
+# The implementation of anchor refers the original authors' codes in GitHub https://github.com/marcotcr/anchor.
 # The Copyright of algorithm anchor is reserved for (c) 2018, Marco Tulio Correia Ribeiro.
 import copy
 import numpy as np
 import matplotlib.pyplot as plt
+
 from skimage.segmentation import mark_boundaries
-
 from anchor.anchor_image import AnchorImage
-
 from ..explainer import Explainer
 
 

@@ -12,7 +12,6 @@ def test_bp():
   norm_image = apply_transforms(image)
 
   model = models.vgg16(pretrained=True)
-  
   Guided_BP = Backprop(model, guided=True)
   output = Guided_BP.calculate_gradients(norm_image)
   visualize(norm_image, output, save_path='results/GuidedBP_' + image_name)

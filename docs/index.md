@@ -10,7 +10,7 @@ To install the package, please use the pip installation as follows:
 
 **Note**: currently, XDeep is only compatible with: **Python 3.6**.
 
-## Intrepretation Methods
+## Interpretation Methods
 
 * Local
     - Gradient
