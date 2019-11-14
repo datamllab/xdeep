@@ -34,6 +34,9 @@ model_explainer.explain(image, method_name='gradcam', target_layer_name='feature
 
 For detailed tutorial, please check the docs directory of this repository [here](https://github.com/datamllab/xdeep/tree/master/docs).
 
+## Sample Results
+
+
 ## Cite this work
 
 Fan Yang, Zijian Zhang, Haofan Wang, Yuening Li, Xia Hu "XDeep: An Interpretation Tool for Deep Neural Networks." arXiv:1911.01005, 2019. ([Download](https://arxiv.org/abs/1911.01005))
