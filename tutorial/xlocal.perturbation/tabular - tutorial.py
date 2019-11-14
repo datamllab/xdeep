@@ -1,4 +1,3 @@
-import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from anchor import utils
 import xdeep.xlocal.perturbation.xdeep_tabular as xdeep_tabular
