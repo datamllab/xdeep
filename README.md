@@ -15,7 +15,7 @@ To install the package, please use the pip installation as follows:
 
 Here is a short example of using the package.
 
-    ```python
+```python
 import torchvision.models as models
 from xdeep.xlocal.gradient.explainers import *
 
@@ -28,7 +28,7 @@ model_explainer = ImageInterpreter(model)
 
 # generate the local interpretation
 model_explainer.explain(image, method_name='gradcam', target_layer_name='features_29', viz=True) 
-    ```
+```
 
 For detailed tutorial, please check the docs directory of this repository [here](https://github.com/datamllab/xdeep/tree/master/docs).
 
