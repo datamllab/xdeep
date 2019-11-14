@@ -22,7 +22,8 @@ def generate_smooth_grad(explainer, input_, target_class=None, n=50, mean=0, sig
 
     sigma = sigma_multiplier / (torch.max(input_)-torch.min(input_)).item()
 
-    for x in range(n):
+    x = 0
+    while x < n:
         # Generate noise
         noise = input_.new(input_.size()).normal_(mean, sigma**2)
 
@@ -34,6 +35,8 @@ def generate_smooth_grad(explainer, input_, target_class=None, n=50, mean=0, sig
 
         # accumulate gradient
         smooth_grad = smooth_grad + grads
+
+        x += 1
 
     # average
     smooth_grad = smooth_grad / n
