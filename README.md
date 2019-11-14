@@ -7,7 +7,7 @@ XDeep is an open source Python library for **Interpretable Machine Learning**. I
 
 ## Installation
 
-To install the package, please use the pip installation as follows:
+To install the package, please use the pip installation as follows (https://pypi.org/project/x-deep/): 
 
     pip install x-deep
 
