@@ -11,21 +11,21 @@ class GradCAMpp(GradCAM):
     def __init__(self, model_dict):
         super(GradCAMpp, self).__init__(model_dict)
 
-    def forward(self, input, class_idx=None, retain_graph=False):
+    def forward(self, input_image, class_idx=None, retain_graph=False):
 
         """Generates GradCAM++ result.
 
         # Arguments
-            input_: torch.Tensor. Preprocessed image with shape (1, C, H, W).
+            input_image: torch.Tensor. Preprocessed image with shape (1, C, H, W).
             class_idx: int. Index of target class. Defaults to be index of predicted class.
 
         # Return
             Result of GradCAM++ (torch.Tensor) with shape (1, H, W).
         """
 
-        b, c, h, w = input.size()
+        b, c, h, w = input_image.size()
 
-        logit = self.model_arch(input)
+        logit = self.model_arch(input_image)
         if class_idx is None:
             score = logit[:, logit.max(1)[-1]].squeeze()
         else:
