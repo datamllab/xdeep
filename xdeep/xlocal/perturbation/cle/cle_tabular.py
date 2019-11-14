@@ -83,6 +83,7 @@ class CLETabularExplainer(LimeTabularExplainer):
                 means", "mins", "maxs", "stds", "feature_values",
                 "feature_frequencies"
         """
+        self.class_names = None
         LimeTabularExplainer.__init__(self,
                  training_data,
                  mode=mode,
