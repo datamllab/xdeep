@@ -60,6 +60,7 @@ class CLETextExplainer(LimeTextExplainer):
                 char_level: an boolean identifying that we treat each character
                     as an independent occurence in the string
         """
+        self.class_names = None
         LimeTextExplainer.__init__(self,
                  kernel_width=kernel_width,
                  kernel=kernel,

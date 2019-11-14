@@ -12,6 +12,7 @@ import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
 
 def transform_img_fn(path_list):
     out = []
+    image_size = inception.inception_v3.default_image_size
     for f in path_list:
         with open(f,'rb') as img:
             image_raw = tf.image.decode_jpeg(img.read(), channels=3)
@@ -23,8 +24,6 @@ def test_image_data():
     slim = tf.contrib.slim
     tf.reset_default_graph()
     session = tf.Session()
-
-    image_size = inception.inception_v3.default_image_size
 
     names = imagenet.create_readable_names_for_imagenet_labels()
 
