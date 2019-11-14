@@ -1,6 +1,7 @@
 language: python
 install: 
-  - pip install -e .
+  script:
+  - pip install -e .[tests]
 before_script:
   - pip install python-coveralls
   - pip install pytest-cover

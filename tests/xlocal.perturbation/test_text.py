@@ -4,7 +4,7 @@ from sklearn import model_selection
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import CountVectorizer
-import xdeep.local.perturbation.xdeep_text as xdeep_text
+import xdeep.xlocal.perturbation.xdeep_text as xdeep_text
 
 # Please download dataset at 
 # http://www.cs.cornell.edu/people/pabo/movie-review-data/rt-polaritydata.tar.gz

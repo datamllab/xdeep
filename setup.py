@@ -17,8 +17,14 @@ setuptools.setup(
    'anchor-exp',
    'shap',
    'torch',
-   'torchvision'
+   'torchvision',
+   'matplotlib',
   ],
+  extras_require={
+        'tests': ['IPython',
+                  'tensorflow',
+                  'pytest',
+                  ],
   classifiers=[
   "Programming Language :: Python :: 3.6",
   "License :: OSI Approved :: MIT License",
