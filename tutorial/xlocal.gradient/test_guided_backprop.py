@@ -5,7 +5,7 @@ from xdeep.xlocal.gradient.backprop.guided_backprop import *
 
 
 def test_bp():
-  
+
   image_path = 'images/ILSVRC2012_val_00000073.JPEG'
   image_name = image_path.split('/')[1]
   image = load_image(image_path)
