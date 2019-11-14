@@ -3,7 +3,6 @@
 
 XDeep is an open source Python library for **Interpretable Machine Learning**. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The goal of XDeep is to provide easily accessible interpretation tools for people who want to figure out how deep models work. XDeep provides a variety of methods to interpret a model both locally and globally.
 
-
 ## Installation
 
 To install the package, please use the pip installation as follows:
@@ -12,12 +11,11 @@ To install the package, please use the pip installation as follows:
 
 **Note**: currently, XDeep is only compatible with: **Python 3.6**.
 
-
 ## Example
 
 Here is a short example of using the package.
 
-```python
+    ```python
 import torchvision.models as models
 from xdeep.xlocal.gradient.explainers import *
 
@@ -46,7 +44,6 @@ Biblatex entry:
              journal={arXiv preprint arXiv:1911.01005},
              year={2019}
             }
-
 
 ## DISCLAIMER
 
