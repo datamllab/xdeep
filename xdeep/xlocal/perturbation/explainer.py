@@ -55,4 +55,3 @@ class Explainer(object):
         """
         if not hasattr(self, 'explanation'):
             raise XDeepError("Please call explain function first.")
-        pass
