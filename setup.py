@@ -19,6 +19,7 @@ setuptools.setup(
    'torch',
    'torchvision',
    'matplotlib',
+   'importlib_resources',
   ],
   extras_require={
         'tests': ['IPython',
