@@ -1,11 +1,13 @@
 # XDeep 
 ## -- *for interpretable deep learning developers*
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2c0aff755250450c90ba167987aaebe5)](https://www.codacy.com/manual/nacoyang/xdeep?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=datamllab/xdeep&amp;utm_campaign=Badge_Grade)
+
 XDeep is an open source Python library for **Interpretable Machine Learning**. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The goal of XDeep is to provide easily accessible interpretation tools for people who want to figure out how deep models work. XDeep provides a variety of methods to interpret a model both locally and globally.
 
 ## Installation
 
-To install the package, please use the pip installation as follows:
+To install the package, please use the pip installation as follows (https://pypi.org/project/x-deep/): 
 
     pip install x-deep
 
@@ -31,6 +33,10 @@ model_explainer.explain(image, method_name='gradcam', target_layer_name='feature
 ```
 
 For detailed tutorial, please check the docs directory of this repository [here](https://github.com/datamllab/xdeep/tree/master/docs).
+
+## Sample Results
+
+<img src="https://github.com/datamllab/xdeep/blob/master/result_img/ensemble_fig.png" width="100%" height="100%">
 
 ## Cite this work
 
