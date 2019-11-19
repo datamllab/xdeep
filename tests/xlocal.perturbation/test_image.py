@@ -28,8 +28,8 @@ def test_image_data():
 
     processed_images = tf.placeholder(tf.float32, shape=(None, 299, 299, 3))
 
-    with slim.arg_scope(inception_v3_arg_scope()):
-        logits, _ = inception_v3(processed_images, num_classes=1001, is_training=False)
+    with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
+        logits, _ = inception_v3.inception_v3(processed_images, num_classes=1001, is_training=False)
     probabilities = tf.nn.softmax(logits)
 
     # Please correctly set the model path.
