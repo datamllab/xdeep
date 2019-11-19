@@ -23,7 +23,7 @@ setuptools.setup(
   ],
   extras_require={
         'tests': ['IPython',
-                  'tensorflow',
+                  'tensorflow < 2.0.0',
                   'pytest',
                   ],
   },

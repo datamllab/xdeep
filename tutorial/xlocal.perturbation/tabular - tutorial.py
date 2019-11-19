@@ -4,7 +4,7 @@ import xdeep.xlocal.perturbation.xdeep_tabular as xdeep_tabular
 
 # Please download the dataset at
 # https://archive.ics.uci.edu/ml/datasets/adult
-# Then reset the path.
+# Then reset the path. eg. 'data/'
 
 def test_tabular_data():
     dataset_folder = 'data/'
