@@ -2,7 +2,6 @@
 # Download slim at https://github.com/tensorflow/models/tree/master/research/slim
 
 import os
-import urllib
 import tensorflow as tf
 from image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
