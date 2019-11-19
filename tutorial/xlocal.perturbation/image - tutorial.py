@@ -1,7 +1,6 @@
 # Please set the folder slim according to your own path.
 # Download slim at https://github.com/tensorflow/models/tree/master/research/slim
 
-import sys
 import os
 import urllib
 import tensorflow as tf
@@ -92,25 +91,23 @@ def create_readable_names_for_imagenet_labels():
   https://github.com/tensorflow/models/blob/master/research/inception/inception/data/build_imagenet_data.py#L463
   """
 
-  # pylint: disable=g-line-too-long
-  base_url = 'https://raw.githubusercontent.com/tensorflow/models/master/research/inception/inception/data/'
-  synset_url = '{}/imagenet_lsvrc_2015_synsets.txt'.format(base_url)
-  synset_to_human_url = '{}/imagenet_metadata.txt'.format(base_url)
-
-  filename, _ = urllib.request.urlretrieve(synset_url)
+  filename = "./image_util/imagenet_lsvrc_2015_synsets.txt"
   synset_list = [s.strip() for s in open(filename).readlines()]
   num_synsets_in_ilsvrc = len(synset_list)
-  assert num_synsets_in_ilsvrc == 1000
+  if not num_synsets_in_ilsvrc == 1000:
+    raise AssertionError()
 
-  filename, _ = urllib.request.urlretrieve(synset_to_human_url)
+  filename = "./image_util/imagenet_metadata.txt"
   synset_to_human_list = open(filename).readlines()
   num_synsets_in_all_imagenet = len(synset_to_human_list)
-  assert num_synsets_in_all_imagenet == 21842
+  if not num_synsets_in_all_imagenet == 21842:
+    raise AssertionError()
 
   synset_to_human = {}
   for s in synset_to_human_list:
     parts = s.strip().split('\t')
-    assert len(parts) == 2
+    if not len(parts) == 2:
+      raise AssertionError()
     synset = parts[0]
     human = parts[1]
     synset_to_human[synset] = human
@@ -123,6 +120,3 @@ def create_readable_names_for_imagenet_labels():
     label_index += 1
 
   return labels_to_names
-
-if __name__ == '__main__':
-    test_image_data()
