@@ -48,7 +48,7 @@ def test_image_data():
     for item in names:
         class_names.append(names[item])
 
-    images = transform_img_fn(['./xlocal.perturbation/data/violin.JPEG'])
+    images = transform_img_fn(['tests/xlocal.perturbation/data/violin.JPEG'])
     image = images[0]
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
@@ -90,13 +90,13 @@ def create_readable_names_for_imagenet_labels():
   https://github.com/tensorflow/models/blob/master/research/inception/inception/data/build_imagenet_data.py#L463
   """
 
-  filename = "./xlocal.perturbation/image_util/imagenet_lsvrc_2015_synsets.txt"
+  filename = "tests/xlocal.perturbation/image_util/imagenet_lsvrc_2015_synsets.txt"
   synset_list = [s.strip() for s in open(filename).readlines()]
   num_synsets_in_ilsvrc = len(synset_list)
   if not num_synsets_in_ilsvrc == 1000:
     raise AssertionError()
 
-  filename = "./xlocal.perturbation/image_util/imagenet_metadata.txt"
+  filename = "tests/xlocal.perturbation/image_util/imagenet_metadata.txt"
   synset_to_human_list = open(filename).readlines()
   num_synsets_in_all_imagenet = len(synset_to_human_list)
   if not num_synsets_in_all_imagenet == 21842:
