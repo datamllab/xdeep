@@ -4,17 +4,14 @@ import xdeep.xlocal.perturbation.xdeep_tabular as xdeep_tabular
 
 # Please download the dataset at
 # https://archive.ics.uci.edu/ml/datasets/adult
-# Then reset the path.
+# Then reset the path. eg. 'data/'
 
 def test_tabular_data():
-    dataset_folder = 'tests/xlocal.perturbation/data/'
+    dataset_folder = 'data/'
     dataset = utils.load_dataset('adult', balance=True, dataset_folder=dataset_folder)
 
     c = RandomForestClassifier(n_estimators=50, n_jobs=5)
     c.fit(dataset.train, dataset.labels_train)
-
-    get_ipython().run_line_magic('load_ext', 'autoreload')
-    get_ipython().run_line_magic('autoreload', '2')
 
     explainer = xdeep_tabular.TabularExplainer(c.predict_proba, ['<=50K', '>50K'], dataset.feature_names, dataset.train[0:50],
                                                categorical_features=dataset.categorical_features, categorical_names=dataset.categorical_names)
@@ -37,4 +34,4 @@ def test_tabular_data():
     explainer.set_anchor_predict_proba(c_new.predict_proba)
     explainer.explain('anchor', dataset.test[0])
     explainer.show_explanation('anchor')
-
+    

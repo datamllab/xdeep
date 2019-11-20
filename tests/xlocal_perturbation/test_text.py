@@ -1,4 +1,5 @@
 import os
+import spacy
 import numpy as np
 from sklearn import model_selection
 from sklearn.linear_model import LogisticRegression
@@ -10,7 +11,7 @@ import xdeep.xlocal.perturbation.xdeep_text as xdeep_text
 # http://www.cs.cornell.edu/people/pabo/movie-review-data/rt-polaritydata.tar.gz
 # Then reset the path.
 
-def load_polarity(path='tests/xlocal.perturbation/data/rt-polaritydata/rt-polaritydata'):
+def load_polarity(path='tests/xlocal_perturbation/data/rt-polaritydata/rt-polaritydata'):
     data = []
     labels = []
     f_names = ['rt-polarity.neg', 'rt-polarity.pos']
@@ -52,10 +53,13 @@ def test_text_data():
     explainer.explain('cle', text)
     explainer.show_explanation('cle')
 
-    explainer.explain('anchor', text)
-    explainer.show_explanation('anchor')
+    try:
+        nlp = spacy.load('en_core_web_sm')
+        explainer.explain('anchor', text)
+        explainer.show_explanation('anchor')
+    except OSError:
+        pass
 
     explainer.initialize_shap(x.predict_proba, vectorizer, train[0:10])
     explainer.explain('shap', text)
     explainer.show_explanation('shap')
-

@@ -53,7 +53,8 @@ class XDeepAnchorTextExplainer(Explainer):
 
         Explainer.explain(self, instance, top_labels=top_labels, labels=labels)
         self.labels = self.predict_proba([instance]).argsort()[0][-1:]
-        self.explanation = self.explainer.explain_instance(instance, predict_label, **kwargs)
+        if self.explainer is not None:
+            self.explanation = self.explainer.explain_instance(instance, predict_label, **kwargs)
 
     def show_explanation(self, show_in_note_book=True, verbose=True):
         """Visualization of explanation of anchor_text.

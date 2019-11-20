@@ -7,16 +7,6 @@ from image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
 
-def transform_img_fn(path_list):
-    out = []
-    image_size = inception_v3.default_image_size
-    for f in path_list:
-        with open(f,'rb') as img:
-            image_raw = tf.image.decode_jpeg(img.read(), channels=3)
-            image = inception_preprocessing.preprocess_image(image_raw, image_size, image_size, is_training=False)
-            out.append(image)
-    return session.run([out])[0]
-
 def test_image_data():
     slim = tf.contrib.slim
     tf.reset_default_graph()
@@ -32,7 +22,7 @@ def test_image_data():
 
     # Please correctly set the model path.
     # Download the model at https://github.com/tensorflow/models/tree/master/research/slim
-    checkpoints_dir = 'model'
+    checkpoints_dir = 'tests/xlocal_perturbation/model'
     init_fn = slim.assign_from_checkpoint_fn(
         os.path.join(checkpoints_dir, 'inception_v3.ckpt'),
         slim.get_model_variables('InceptionV3'))
@@ -48,7 +38,17 @@ def test_image_data():
     for item in names:
         class_names.append(names[item])
 
-    images = transform_img_fn(['tests/xlocal.perturbation/data/violin.JPEG'])
+    def transform_img_fn(path_list):
+        out = []
+        image_size = 299
+        for f in path_list:
+            with open(f,'rb') as img:
+                image_raw = tf.image.decode_jpeg(img.read(), channels=3)
+                image = inception_preprocessing.preprocess_image(image_raw, image_size, image_size, is_training=False)
+                out.append(image)
+        return session.run([out])[0]
+
+    images = transform_img_fn(['tests/xlocal_perturbation/data/violin.JPEG'])
     image = images[0]
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
@@ -90,13 +90,13 @@ def create_readable_names_for_imagenet_labels():
   https://github.com/tensorflow/models/blob/master/research/inception/inception/data/build_imagenet_data.py#L463
   """
 
-  filename = "tests/xlocal.perturbation/image_util/imagenet_lsvrc_2015_synsets.txt"
+  filename = "tests/xlocal_perturbation/image_util/imagenet_lsvrc_2015_synsets.txt"
   synset_list = [s.strip() for s in open(filename).readlines()]
   num_synsets_in_ilsvrc = len(synset_list)
   if not num_synsets_in_ilsvrc == 1000:
     raise AssertionError()
 
-  filename = "tests/xlocal.perturbation/image_util/imagenet_metadata.txt"
+  filename = "tests/xlocal_perturbation/image_util/imagenet_metadata.txt"
   synset_to_human_list = open(filename).readlines()
   num_synsets_in_all_imagenet = len(synset_to_human_list)
   if not num_synsets_in_all_imagenet == 21842:
