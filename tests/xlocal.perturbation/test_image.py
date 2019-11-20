@@ -7,16 +7,6 @@ from image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
 
-def transform_img_fn(path_list):
-    out = []
-    image_size = inception_v3.default_image_size
-    for f in path_list:
-        with open(f,'rb') as img:
-            image_raw = tf.image.decode_jpeg(img.read(), channels=3)
-            image = inception_preprocessing.preprocess_image(image_raw, image_size, image_size, is_training=False)
-            out.append(image)
-    return session.run([out])[0]
-
 def test_image_data():
     slim = tf.contrib.slim
     tf.reset_default_graph()
@@ -32,7 +22,7 @@ def test_image_data():
 
     # Please correctly set the model path.
     # Download the model at https://github.com/tensorflow/models/tree/master/research/slim
-    checkpoints_dir = 'model'
+    checkpoints_dir = 'tests/xlocal.perturbation/model'
     init_fn = slim.assign_from_checkpoint_fn(
         os.path.join(checkpoints_dir, 'inception_v3.ckpt'),
         slim.get_model_variables('InceptionV3'))
@@ -47,6 +37,16 @@ def test_image_data():
     class_names = []
     for item in names:
         class_names.append(names[item])
+
+    def transform_img_fn(path_list):
+        out = []
+        image_size = 299
+        for f in path_list:
+            with open(f,'rb') as img:
+                image_raw = tf.image.decode_jpeg(img.read(), channels=3)
+                image = inception_preprocessing.preprocess_image(image_raw, image_size, image_size, is_training=False)
+                out.append(image)
+        return session.run([out])[0]
 
     images = transform_img_fn(['tests/xlocal.perturbation/data/violin.JPEG'])
     image = images[0]

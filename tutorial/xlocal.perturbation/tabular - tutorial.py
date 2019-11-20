@@ -13,9 +13,6 @@ def test_tabular_data():
     c = RandomForestClassifier(n_estimators=50, n_jobs=5)
     c.fit(dataset.train, dataset.labels_train)
 
-    get_ipython().run_line_magic('load_ext', 'autoreload')
-    get_ipython().run_line_magic('autoreload', '2')
-
     explainer = xdeep_tabular.TabularExplainer(c.predict_proba, ['<=50K', '>50K'], dataset.feature_names, dataset.train[0:50],
                                                categorical_features=dataset.categorical_features, categorical_names=dataset.categorical_names)
 
@@ -37,4 +34,4 @@ def test_tabular_data():
     explainer.set_anchor_predict_proba(c_new.predict_proba)
     explainer.explain('anchor', dataset.test[0])
     explainer.show_explanation('anchor')
-
+    
