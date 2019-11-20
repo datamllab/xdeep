@@ -10,7 +10,7 @@ import xdeep.xlocal.perturbation.xdeep_text as xdeep_text
 # http://www.cs.cornell.edu/people/pabo/movie-review-data/rt-polaritydata.tar.gz
 # Then reset the path.
 
-def load_polarity(path='./data/rt-polaritydata/rt-polaritydata'):
+def load_polarity(path='./xlocal.perturbation/data/rt-polaritydata/rt-polaritydata'):
     data = []
     labels = []
     f_names = ['rt-polarity.neg', 'rt-polarity.pos']

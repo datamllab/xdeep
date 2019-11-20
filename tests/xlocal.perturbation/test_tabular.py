@@ -7,7 +7,7 @@ import xdeep.xlocal.perturbation.xdeep_tabular as xdeep_tabular
 # Then reset the path.
 
 def test_tabular_data():
-    dataset_folder = 'data/'
+    dataset_folder = './xlocal.perturbation/data/'
     dataset = utils.load_dataset('adult', balance=True, dataset_folder=dataset_folder)
 
     c = RandomForestClassifier(n_estimators=50, n_jobs=5)
