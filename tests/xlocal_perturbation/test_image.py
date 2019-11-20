@@ -3,7 +3,7 @@
 
 import os
 import tensorflow as tf
-from image_util import inception_preprocessing, inception_v3
+from tests.xlocal_perturbation.image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
 
