@@ -3,7 +3,7 @@
 
 import os
 import tensorflow as tf
-from tests.xlocal_perturbation.image_util import inception_preprocessing, inception_v3
+from .image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
 
@@ -53,18 +53,18 @@ def test_image_data():
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
 
-    explainer.explain('lime', image, top_labels=3)
+    explainer.explain('lime', image, top_labels=3, num_samples=50)
     explainer.show_explanation('lime', deprocess=f, positive_only=False)
 
-    explainer.explain('cle', image, top_labels=3)
+    explainer.explain('cle', image, top_labels=3, num_samples=50)
     explainer.show_explanation('cle', deprocess=f, positive_only=False)
 
-    explainer.explain('anchor', image)
-    explainer.show_explanation('anchor')
+    # explainer.explain('anchor', image, threshold=0.7, coverage_samples=5000)
+    # explainer.show_explanation('anchor')
 
     segments_slic = slic(image, n_segments=50, compactness=30, sigma=3)
     explainer.initialize_shap(n_segment=50, segment=segments_slic)
-    explainer.explain('shap',image,nsamples=400)
+    explainer.explain('shap',image,nsamples=100)
     explainer.show_explanation('shap',deprocess=f)
 
 def create_readable_names_for_imagenet_labels():
