@@ -2,12 +2,47 @@
 # Download slim at https://github.com/tensorflow/models/tree/master/research/slim
 
 import os
+import torch
+import torchvision.models as models
 import tensorflow as tf
+import numpy as np
 from image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
+from xdeep.utils import *
 
-def test_image_data():
+def test_image_data_torch():
+  with torch.no_grad():
+    image = load_image('./xlocal_perturbation/data/violin.JPEG')
+    image = np.asarray(image)
+    model = models.vgg16(pretrained=True)
+
+    names = create_readable_names_for_imagenet_labels()
+
+    class_names = []
+    for item in names:
+        class_names.append(names[item])
+
+    def predict_fn(x):
+      return model(torch.from_numpy(x.reshape(-1, 3, 224, 224)).float()).numpy()
+
+    explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
+
+    explainer.explain('lime', image, top_labels=1, num_samples=30)
+    explainer.show_explanation('lime', positive_only=False)
+
+    explainer.explain('cle', image, top_labels=1, num_samples=30)
+    explainer.show_explanation('cle', positive_only=False)
+
+    explainer.explain('anchor', image, threshold=0.7, coverage_samples=5000)
+    explainer.show_explanation('anchor')
+
+    segments_slic = slic(image, n_segments=30, compactness=30, sigma=3)
+    explainer.initialize_shap(n_segment=30, segment=segments_slic)
+    explainer.explain('shap',image,nsamples=30)
+    explainer.show_explanation('shap')
+
+def test_image_data_tf():
     slim = tf.contrib.slim
     tf.reset_default_graph()
     session = tf.Session()
@@ -48,7 +83,7 @@ def test_image_data():
                 out.append(image)
         return session.run([out])[0]
 
-    images = transform_img_fn(['data/violin.JPEG'])
+    images = transform_img_fn(['./data/violin.JPEG'])
     image = images[0]
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
@@ -119,6 +154,3 @@ def create_readable_names_for_imagenet_labels():
     label_index += 1
 
   return labels_to_names
-
-if __name__ == '__main__':
-  test_image_data()
