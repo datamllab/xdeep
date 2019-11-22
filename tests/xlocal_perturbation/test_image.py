@@ -7,7 +7,7 @@ from .image_util import inception_preprocessing, inception_v3
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
 
-def test_image_data():
+def test_image_data(dir_path, model_name):
     slim = tf.contrib.slim
     tf.reset_default_graph()
     session = tf.Session()
@@ -21,10 +21,10 @@ def test_image_data():
     probabilities = tf.nn.softmax(logits)
 
     # Please correctly set the model path.
-    # Download the model at https://github.com/tensorflow/models/tree/master/research/slim
-    checkpoints_dir = 'tests/xlocal_perturbation/model'
+    # Download the model Inception_V3 at https://github.com/tensorflow/models/tree/master/research/slim
+    checkpoints_dir = dir_path
     init_fn = slim.assign_from_checkpoint_fn(
-        os.path.join(checkpoints_dir, 'inception_v3.ckpt'),
+        os.path.join(checkpoints_dir, model_name),
         slim.get_model_variables('InceptionV3'))
     init_fn(session)
 
