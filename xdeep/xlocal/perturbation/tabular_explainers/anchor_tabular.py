@@ -115,4 +115,4 @@ class XDeepAnchorTabularExplainer(Explainer):
         print('Precision: %.2f' % exp.precision())
         print('Coverage: %.2f' % exp.coverage())
         if show_in_note_book:
-            exp.show_in_notebook()
+            pass

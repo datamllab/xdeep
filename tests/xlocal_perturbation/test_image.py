@@ -23,18 +23,18 @@ def test_image_data():
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
 
-    explainer.explain('lime', image, top_labels=1, num_samples=30)
+    explainer.explain('lime', image, top_labels=1, num_samples=100)
     explainer.show_explanation('lime', positive_only=False)
 
-    explainer.explain('cle', image, top_labels=1, num_samples=30)
+    explainer.explain('cle', image, top_labels=1, num_samples=100)
     explainer.show_explanation('cle', positive_only=False)
 
     # explainer.explain('anchor', image, threshold=0.7, coverage_samples=5000)
     # explainer.show_explanation('anchor')
 
-    segments_slic = slic(image, n_segments=30, compactness=30, sigma=3)
-    explainer.initialize_shap(n_segment=30, segment=segments_slic)
-    explainer.explain('shap',image,nsamples=30)
+    segments_slic = slic(image, n_segments=10, compactness=30, sigma=3)
+    explainer.initialize_shap(n_segment=10, segment=segments_slic)
+    explainer.explain('shap',image, nsamples=10)
     explainer.show_explanation('shap')
 
 
