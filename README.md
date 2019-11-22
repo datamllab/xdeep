@@ -2,7 +2,6 @@
 ## -- *for interpretable deep learning developers*
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2c0aff755250450c90ba167987aaebe5)](https://www.codacy.com/manual/nacoyang/xdeep?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=datamllab/xdeep&amp;utm_campaign=Badge_Grade)
-
 [![Build Status](https://travis-ci.com/datamllab/xdeep.svg?branch=master)](https://travis-ci.com/datamllab/xdeep)
 
 XDeep is an open source Python library for **Interpretable Machine Learning**. It is developed by [DATA Lab](http://faculty.cs.tamu.edu/xiahu/index.html) at Texas A&M University. The goal of XDeep is to provide easily accessible interpretation tools for people who want to figure out how deep models work. XDeep provides a variety of methods to interpret a model both locally and globally.
