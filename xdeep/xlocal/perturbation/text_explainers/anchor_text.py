@@ -52,7 +52,10 @@ class XDeepAnchorTextExplainer(Explainer):
             return np.argmax(self.predict_proba(x), axis=1)
 
         Explainer.explain(self, instance, top_labels=top_labels, labels=labels)
-        self.labels = self.predict_proba([instance]).argsort()[0][-1:]
+        try:
+            self.labels = self.predict_proba([instance]).argsort()[0][-1:]
+        except:
+            self.labels = self.predict_proba(instance).argsort()[0][-1:]
         if self.explainer is not None:
             self.explanation = self.explainer.explain_instance(instance, predict_label, **kwargs)
 

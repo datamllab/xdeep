@@ -39,7 +39,10 @@ class XDeepAnchorImageExplainer(Explainer):
             **kwargs: Parameters setter. For more detail, please check https://github.com/marcotcr/anchor.
         """
         Explainer.explain(self, instance, top_labels=top_labels, labels=labels)
-        self.labels = self.predict_proba([instance]).argsort()[0][-1:]
+        try:
+            self.labels = self.predict_proba([instance]).argsort()[0][-1:]
+        except:
+            self.labels = self.predict_proba(instance).argsort()[0][-1:]
         self.explanation = self.explainer.explain_instance(instance, self.predict_proba, **kwargs)
 
     def __show_image_no_axis(self, image, boundaries=None, save=None):

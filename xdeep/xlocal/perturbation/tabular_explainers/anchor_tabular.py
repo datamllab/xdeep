@@ -80,7 +80,10 @@ class XDeepAnchorTabularExplainer(Explainer):
         def predict_label(x):
             return np.argmax(self.predict_proba(x), axis=1)
         self.instance = instance
-        self.labels = self.predict_proba(self.explainer.encoder.transform([instance])).argsort()[0][-1:]
+        try:
+            self.labels = self.predict_proba(self.explainer.encoder.transform([instance])).argsort()[0][-1:]
+        except:
+            self.labels = self.predict_proba(self.explainer.encoder.transform(instance)).argsort()[0][-1:]
         self.explanation = self.explainer.explain_instance(instance, predict_label, **kwargs)
 
     def show_explanation(self, show_in_note_book=True, verbose=True):

@@ -40,7 +40,10 @@ class Explainer(object):
             **kwargs: Other parameters that depends on which method you use. For more detail, please check xdeep documentation.
         """
         self.instance = instance
-        proba = self.predict_proba([instance])[0]
+        try:
+            proba = self.predict_proba([instance])[0]
+        except:
+            proba = self.predict_proba(instance)[0]
         self.original_pred = proba
         if top_labels is not None:
             self.labels = proba.argsort()[-top_labels:]
