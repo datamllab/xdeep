@@ -1,71 +1,42 @@
-# Please set the folder slim according to your own path.
-# Download slim at https://github.com/tensorflow/models/tree/master/research/slim
-
-import os
-import tensorflow as tf
-from .image_util import inception_preprocessing, inception_v3
+import torch
+import torchvision.models as models
+import numpy as np
 from skimage.segmentation import slic
 import xdeep.xlocal.perturbation.xdeep_image as xdeep_image
+from xdeep.utils import *
 
-def test_image_data(dir_path, model_name):
-    slim = tf.contrib.slim
-    tf.reset_default_graph()
-    session = tf.Session()
+image = load_image('tests/xlocal_perturbation/data/violin.JPEG')
+image = np.asarray(image)
+model = models.vgg16(pretrained=True)
 
+
+def test_image_data():
+  with torch.no_grad():
     names = create_readable_names_for_imagenet_labels()
-
-    processed_images = tf.placeholder(tf.float32, shape=(None, 299, 299, 3))
-
-    with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
-        logits, _ = inception_v3.inception_v3(processed_images, num_classes=1001, is_training=False)
-    probabilities = tf.nn.softmax(logits)
-
-    # Please correctly set the model path.
-    # Download the model Inception_V3 at https://github.com/tensorflow/models/tree/master/research/slim
-    checkpoints_dir = dir_path
-    init_fn = slim.assign_from_checkpoint_fn(
-        os.path.join(checkpoints_dir, model_name),
-        slim.get_model_variables('InceptionV3'))
-    init_fn(session)
-
-    def predict_fn(images):
-        return session.run(probabilities, feed_dict={processed_images: images})
-
-    def f(x):
-        return x / 2 + 0.5
 
     class_names = []
     for item in names:
         class_names.append(names[item])
 
-    def transform_img_fn(path_list):
-        out = []
-        image_size = 299
-        for f in path_list:
-            with open(f,'rb') as img:
-                image_raw = tf.image.decode_jpeg(img.read(), channels=3)
-                image = inception_preprocessing.preprocess_image(image_raw, image_size, image_size, is_training=False)
-                out.append(image)
-        return session.run([out])[0]
-
-    images = transform_img_fn(['tests/xlocal_perturbation/data/violin.JPEG'])
-    image = images[0]
+    def predict_fn(x):
+      return model(torch.from_numpy(x.reshape(-1, 3, 224, 224)).float()).numpy()
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
 
-    explainer.explain('lime', image, top_labels=3, num_samples=50)
-    explainer.show_explanation('lime', deprocess=f, positive_only=False)
+    explainer.explain('lime', image, top_labels=1, num_samples=30)
+    explainer.show_explanation('lime', positive_only=False)
 
-    explainer.explain('cle', image, top_labels=3, num_samples=50)
-    explainer.show_explanation('cle', deprocess=f, positive_only=False)
+    explainer.explain('cle', image, top_labels=1, num_samples=30)
+    explainer.show_explanation('cle', positive_only=False)
 
     # explainer.explain('anchor', image, threshold=0.7, coverage_samples=5000)
     # explainer.show_explanation('anchor')
 
-    segments_slic = slic(image, n_segments=50, compactness=30, sigma=3)
-    explainer.initialize_shap(n_segment=50, segment=segments_slic)
-    explainer.explain('shap',image,nsamples=100)
-    explainer.show_explanation('shap',deprocess=f)
+    segments_slic = slic(image, n_segments=30, compactness=30, sigma=3)
+    explainer.initialize_shap(n_segment=30, segment=segments_slic)
+    explainer.explain('shap',image,nsamples=30)
+    explainer.show_explanation('shap')
+
 
 def create_readable_names_for_imagenet_labels():
   """Create a dict mapping label id to human readable string.
