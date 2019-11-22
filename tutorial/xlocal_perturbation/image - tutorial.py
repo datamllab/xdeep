@@ -13,7 +13,7 @@ from xdeep.utils import *
 
 def test_image_data_torch():
   with torch.no_grad():
-    image = load_image('tests/xlocal_perturbation/data/violin.JPEG')
+    image = load_image('./xlocal_perturbation/data/violin.JPEG')
     image = np.asarray(image)
     model = models.vgg16(pretrained=True)
 
@@ -83,7 +83,7 @@ def test_image_data_tf():
                 out.append(image)
         return session.run([out])[0]
 
-    images = transform_img_fn(['data/violin.JPEG'])
+    images = transform_img_fn(['./data/violin.JPEG'])
     image = images[0]
 
     explainer = xdeep_image.ImageExplainer(predict_fn, class_names)
@@ -154,6 +154,3 @@ def create_readable_names_for_imagenet_labels():
     label_index += 1
 
   return labels_to_names
-
-if __name__ == '__main__':
-  test_image_data()
