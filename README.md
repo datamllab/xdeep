@@ -59,6 +59,10 @@ Please note that this is a **pre-release** version of the XDeep which is still u
 other problems on the website, please let us know immediately so we
 can rectify these accordingly. Your help in this regard is greatly appreciated. 
 
+## Contact
+
+Please send emails to *nacoyang@tamu.edu* if you have any issues for this project. Thanks.
+
 ## Acknowledgements
 
 The authors gratefully acknowledge the XAI program of the Defense Advanced Research Projects Agency (DARPA) administered through grant N66001-17-2-4031; the Texas A&M College of Engineering, and Texas A&M. 
